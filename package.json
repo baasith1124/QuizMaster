@@ -6,13 +6,15 @@
   "scripts": {
     "dev": "concurrently \"npm run server\" \"vite --host\"",
     "server": "node server/index.js",
-    "build": "vite build",
+    "build": "npx vite build",
     "start": "npm run build && npm run server",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "npx vite build"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   },
   "dependencies": {
     "@types/uuid": "^9.0.7",
