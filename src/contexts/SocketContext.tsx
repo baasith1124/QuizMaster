@@ -28,13 +28,17 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
   const [connected, setConnected] = useState(false);
 
   useEffect(() => {
-    // Connect to the server (adjust URL for production)
-    const newSocket = io(window.location.hostname === 'localhost' 
-      ? 'http://localhost:3001' 
-      : window.location.origin, {
-      transports: ['websocket', 'polling']
+    // Production-ready socket connection
+    const socketUrl = import.meta.env.PROD 
+      ? window.location.origin 
+      : 'http://localhost:3001';
+    
+    const newSocket = io(socketUrl, {
+      transports: ['websocket', 'polling'],
+      upgrade: true,
+      rememberUpgrade: true,
+      timeout: 20000
     });
-
     newSocket.on('connect', () => {
       console.log('Connected to server');
       setConnected(true);

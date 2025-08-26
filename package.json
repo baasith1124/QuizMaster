@@ -6,10 +6,13 @@
   "scripts": {
     "dev": "concurrently \"npm run server\" \"vite --host\"",
     "server": "node server/index.js",
-    "build": "vite build && npm run server",
-    "start": "npm run build",
+    "build": "vite build",
+    "start": "npm run build && npm run server",
     "lint": "eslint .",
     "preview": "vite preview"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "@types/uuid": "^9.0.7",
